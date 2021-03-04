@@ -1,39 +1,47 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
-const Counter = (props) =>{
-    const[count, setCount] = useState(props.initialNumber)
+const Counter = (props) => {
+    // we want a new piece of state
+    const [count, setCount] = useState(props.initialNumber)
+    const [name, setName] = useState('Niki')
+    // useState always returns an array, the first value is the state
+    // the second value is the updaterfunction.
 
-    function subtract(){
-        setCount (count-1)
+    const updateByFive = ()=> {
+        setCount(count + 5)
     }
 
-    //this will run on first mount ComponentDidMount
-    //this will run on every update ComponentDidUpdate
-    useEffect(()=>{
-        console.log('hello')
-    })
+    function subtract() {
+        setCount(count -1 )
+    }
 
-    //if you pass an empty array it acts like ComponentDidMount
-    //just runs once
-    useEffect(()=>{
+    // this will run on first mount ComponentDidMount
+    // this will run on every update ComponentDidUpdate
+    useEffect(() => {
+       console.log('hello')
+    });
+
+    // if you pass an empty array it acts like ComponentDidMount
+    // just runs once
+    useEffect(() => {
         console.log('only on the Mount')
-    },[])
+    }, []); 
 
-    //runs on initial load, and whenever count gets updated???
-    // useEffect(()=>{
-    //     console.log('when count update')
-    // a logic to check count and when to run
-    // },[count])
-
+    // runs on initial load, and whenever count gets updated
+    useEffect(() => {
+    console.log('When count updates')
+    // DONT DO THIS INFINITE LOOP
+    // setCount(count+ 1)
+    }, [count]); 
 
     return(
         <>
-        <h1>Counter</h1>
-        <p>{count}</p>
-        <button onClick={()=> setCount(count + 1 )}>Add</button>
-        <button onClick={subtract}>Subtract</button>
+            <h1>{name} Counter</h1>
+            <p>{count}</p>
+            <button onClick={updateByFive}>Add</button>
+            <button onClick={subtract}>Subtract</button>
         </>
     )
-}  
+}
 
-export default Counter;
+export default Counter

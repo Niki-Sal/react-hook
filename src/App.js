@@ -1,13 +1,13 @@
 
 import './App.css';
 import Counter from './components/Counter'
-import APIFetch from './components/APIFetch'
+import ApiFetch from './components/ApiFetch'
 
 function App() {
   return (
     <div className="App">
       <Counter initialNumber={0} />
-      <APIFetch userName={'Niki-Sal'}/>
+      <ApiFetch userName={'Niki-Sal'} />
     </div>
   );
 }
